@@ -2,11 +2,19 @@ name: Automation
 on:
   push:
     branches:
-        - master
-    workflow_dispatch:
+      - master
+  workflow_dispatch:
 jobs:
-    job1:
-        runs-on: ubuntu-Latest
-        steps:
-           -name : Print Hello World
-             run: echo "Hello World"
+  job1: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
